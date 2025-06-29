@@ -3,6 +3,18 @@ package org.example
 // 1. กำหนด data class สำหรับเก็บข้อมูลสินค้า
 data class Product(val name: String, val price: Double, val category: String)
 
+fun calculateTotalElectronicsPriceOver500(products: List<Product>): Double {
+    return products
+        .filter { it.category == "Electronics" && it.price > 500 }
+        .sumOf { it.price }
+}
+
+fun countElectronicsOver500(products: List<Product>): Int {
+    return products
+        .count { it.category == "Electronics" && it.price > 500 }
+}
+
+
 fun main() {
     // 2. สร้างรายการสินค้าตัวอย่าง (List<Product>)
     val products = listOf(
@@ -66,6 +78,8 @@ fun main() {
     }
 
 
+
+
     println("อภิปรายความแตกต่างระหว่าง List และ Sequence:")
     println("1. List Operations (วิธีที่ 1):")
     println("   - ทุกครั้งที่เรียกใช้ operation (เช่น filter, map) จะมีการสร้าง Collection (List) ใหม่ขึ้นมาเพื่อเก็บผลลัพธ์ของขั้นนั้นๆ")
@@ -80,3 +94,5 @@ fun main() {
     println("   - จะไม่มีการสร้าง Collection กลางทาง ทำให้ประหยัดหน่วยความจำและเร็วกว่ามากสำหรับชุดข้อมูลขนาดใหญ่ เพราะทำงานกับข้อมูลทีละชิ้นและทำทุกขั้นตอนให้เสร็จในรอบเดียว")
     println("   - การคำนวณจะเกิดขึ้นเมื่อมี 'Terminal Operation' มาเรียกใช้เท่านั้น (ในที่นี้คือ .sum())")
 }
+
+
